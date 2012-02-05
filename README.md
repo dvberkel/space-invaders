@@ -22,3 +22,4 @@ particular I am interested in broadening my knowledge about
 * [Rake](http://rake.rubyforge.org/ "Documentation on Ruby Make")
 * [Cucumber](http://cukes.info/ "Cucumber website")
 * [RSpec](http://rspec.info/ "Documentation on RSPec")
+* [Bundler](http://gembundler.com/ "Bundler website")
