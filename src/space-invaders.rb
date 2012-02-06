@@ -1,10 +1,7 @@
 class SpaceInvaders
+  attr_reader :score
   def initialize(startingScore = 0)
     @score = startingScore
-  end
-
-  def score
-    @score
   end
   
   def notify(event)
