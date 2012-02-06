@@ -1,5 +1,5 @@
 class Observable
-  def initialize
+  def initialize()
     @observers = []
   end
 
