@@ -23,3 +23,20 @@ particular I am interested in broadening my knowledge about
 * [Cucumber](http://cukes.info/ "Cucumber website")
 * [RSpec](http://rspec.info/ "Documentation on RSPec")
 * [Bundler](http://gembundler.com/ "Bundler website")
+
+Setup
+-----
+
+We are using Ruby Version Manager ([rvm](http://beginrescueend.com/ "Documentation on rvm"))
+to control which version of ruby and gems we are using. The following
+setup was used to start developing
+
+    > rvm use 1.9.2
+    > rvm gemset create invaders
+    > rvm use 1.9.2@invaders
+
+We are using [Bundler](http://gembundler.com/ "Bundler website") to
+control the gem versions. Use the following command to fetch all
+necessary gems.
+
+    > bundle install
