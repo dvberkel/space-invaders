@@ -8,3 +8,15 @@ Feature: member plays space invaders
     Given a new space invaders game
     When a score is asked
     Then the player scored 0
+
+  Scenario: create a space invaders game and score a point
+    Given a new space invaders game
+    And the game received an alien died event
+    When a score is asked
+    Then the player scored 1
+
+  Scenario: continue a space invaders game and score a point
+    Given a space invaders game at 10 points
+    And the game received an alien died event
+    When a score is asked
+    Then the player scored 11
