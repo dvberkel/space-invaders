@@ -5,6 +5,7 @@ class CollisionDetector
 end
 
 class BoundingBox
+  attr_reader :width, :height, :location
   def initialize(width, height, location = Location.new(0,0))
     @width = width
     @height = height
@@ -18,17 +19,5 @@ class BoundingBox
   def overlaps?(boundingBox)
     return ((self.location.x - boundingBox.location.x).abs <= (self.width + boundingBox.width) &&
       (self.location.y - boundingBox.location.y).abs <= (self.height + boundingBox.height))
-  end
-  
-  def location
-    @location
-  end
-  
-  def width
-    @width
-  end
-
-  def height
-    @height
   end
 end
