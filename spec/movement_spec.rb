@@ -1,5 +1,6 @@
 require 'bullet'
 require 'aliens'
+require 'movement'
 
 describe "movement" do
   describe "of bullet" do
@@ -27,6 +28,14 @@ describe "movement" do
       alien.move
 
       alien.location.should == Location.new(0,0)
+    end
+
+    it "should be determined by a strategy" do
+      alien = Alien.new({:moveStrategy => Linear.new(Location.new(1,0))})
+
+      alien.move
+      
+      alien.location.should == Location.new(1,0)
     end
   end
 end
