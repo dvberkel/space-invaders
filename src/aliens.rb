@@ -4,21 +4,21 @@ require 'events'
 
 
 class Alien < Observable
-  def initialize(location = Location.new(0,0), boundingBox = BoundingBox.new(4,4))
+  attr_reader :location, :boundingBox
+  def initialize(options = {})
     super()
-    @location = location
-    @boundingBox = boundingBox
+    options = {
+      :location => Location.new(0,0), :boundingBox => BoundingBox.new(4,4), :moveStrategy => StandStill.new()}.merge(options)
+    @location = options[:location]
+    @boundingBox = options[:boundingBox]
+    @moveStrategy = options[:moveStrategy]
   end
 
   def die()
     notifyAll(DiedEvent.new)
   end
 
-  def location
-    return @location
-  end
-
-  def boundingBox
-    return @boundingBox
+  def move
+    @location = @moveStrategy.move(@location)
   end
 end

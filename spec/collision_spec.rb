@@ -1,28 +1,29 @@
 require 'collision-detector'
 
-describe "being hit" do
+describe "collision-detector" do
   before(:each) do
     @detector = CollisionDetector.new
   end
+
+  before(:each) do
+    @alien = Alien.new({:location => Location.new(0,0), :boundingBox => BoundingBox.new(4,4)})
+  end
   
-  it "should hit an alien dead on" do
-    alien = Alien.new(Location.new(0,0))
-    bullet = Bullet.new(Location.new(0,0))
+  it "should detect an dead on collision" do
+    bullet = Bullet.new({:location => Location.new(0,0)})
     
-    @detector.collides?(alien,bullet).should == true
+    @detector.collides?(@alien,bullet).should == true
   end
 
-  it "should mis an alien if it is to the right of its bounding box" do
-    alien = Alien.new(Location.new(0,0), BoundingBox.new(4,4))
-    bullet = Bullet.new(Location.new(6,0))
+  it "should not detect a collision when way off." do
+    bullet = Bullet.new({:location => Location.new(6,0)})
 
-    @detector.collides?(alien, bullet).should == false
+    @detector.collides?(@alien, bullet).should == false
   end
 
-  it "should mis an alien if it is below of its bounding box" do
-    alien = Alien.new(Location.new(0,0), BoundingBox.new(4,4))
-    bullet = Bullet.new(Location.new(0,-6))
+  it "should detect a glancing blow" do
+    bullet = Bullet.new({:location => Location.new(0,-4)})
 
-    @detector.collides?(alien, bullet).should == false
+    @detector.collides?(@alien, bullet).should == true
   end
 end
