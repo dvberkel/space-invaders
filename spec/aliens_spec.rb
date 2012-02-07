@@ -13,13 +13,13 @@ describe "alien" do
       @alien = Alien.new
     end
     
-    it "should be alive if it did not die" do
+    it "should not be notified if still alife" do
       @alien.addObserver(@observer)
       
       @observer.alienDied?.should == false
     end
     
-    it "should signal that it died" do
+    it "should notify death" do
       @alien.addObserver(@observer)
       
       @alien.die
