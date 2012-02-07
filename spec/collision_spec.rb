@@ -6,7 +6,7 @@ describe "collision-detector" do
   end
 
   before(:each) do
-    @alien = Alien.new(Location.new(0,0), BoundingBox.new(4,4))
+    @alien = Alien.new({:location => Location.new(0,0), :boundingBox => BoundingBox.new(4,4)})
   end
   
   it "should detect an dead on collision" do

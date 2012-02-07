@@ -1,4 +1,5 @@
 require 'bullet'
+require 'aliens'
 
 describe "movement" do
   describe "of bullet" do
@@ -16,6 +17,16 @@ describe "movement" do
       bullet.move
 
       bullet.location.should == Location.new(1,5)
+    end
+  end
+
+  describe "of alien" do
+    it "should default be stand still" do
+      alien = Alien.new
+      
+      alien.move
+
+      alien.location.should == Location.new(0,0)
     end
   end
 end
