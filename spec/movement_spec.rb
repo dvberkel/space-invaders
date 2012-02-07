@@ -13,7 +13,7 @@ describe "movement" do
     end
     
     it "should be in a straight line upwards" do
-      bullet = Bullet.new(Location.new(1,0))
+      bullet = Bullet.new({:location => Location.new(1,0)})
 
       bullet.move
 
