@@ -4,4 +4,8 @@ class Bullet
     @location = location
     @boundingBox = boundingBox
   end
+
+  def move
+    @location = @location.displaceBy(Location.new(0,5))
+  end
 end
