@@ -1,4 +1,3 @@
-$LOAD_PATH << './src'
 require 'space-invaders'
 require 'events'
 
