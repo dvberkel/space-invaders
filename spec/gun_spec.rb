@@ -26,6 +26,24 @@ describe("gun") do
       @observer.gunFired?.should == false
     end
   end
+
+  describe("move") do
+    it "should default do nothing" do
+      gun = Gun.new
+
+      gun.move
+
+      gun.location.should == Location.new(0,0)
+    end
+
+    it "should be determined by a move strategy" do
+      gun = Gun.new({:moveStrategy => Linear.new(Location.new(0,3))})
+
+      gun.move
+
+      gun.location.should == Location.new(0,3)
+    end
+  end
 end
 
 class GunObserver
