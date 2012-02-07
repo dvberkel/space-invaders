@@ -8,9 +8,10 @@ class Bullet
     }.merge(options)
     @location = options[:location]
     @boundingBox = options[:boundingBox]
+    @moveStrategy = options[:moveStrategy]
   end
 
   def move
-    @location = @location.displaceBy(Location.new(0,5))
+    @location = @moveStrategy.move(@location)
   end
 end
