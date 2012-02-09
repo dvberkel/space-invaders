@@ -28,6 +28,10 @@ describe("gun") do
   end
 
   describe("move") do
+    before(:each) do
+      @observer = GunObserver.new
+    end
+
     it "should default do nothing" do
       gun = Gun.new
 
@@ -38,12 +42,11 @@ describe("gun") do
 
     it "should default do notify movement" do
       gun = Gun.new
-      observer = GunObserver.new
-      gun.addObserver(observer)
+      gun.addObserver(@observer)
 
       gun.move
 
-      observer.gunMoved?.should == false
+      @observer.gunMoved?.should == false
     end
 
     it "should be determined by a move strategy" do
@@ -56,12 +59,11 @@ describe("gun") do
     
     it "should be notified" do
       gun = Gun.new({:moveStrategy => Linear.new(Location.new(3,0))})
-      observer = GunObserver.new
-      gun.addObserver(observer)
+      gun.addObserver(@observer)
 
       gun.move
 
-      observer.gunMoved?.should == true
+      @observer.gunMoved?.should == true
     end
   end
 end
