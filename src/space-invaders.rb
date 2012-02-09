@@ -10,11 +10,15 @@ class SpaceInvaders
   
   def notify(event)
     if (event.type == :alienDied)
-      @score = @score + 1
-      @aliens.delete(event.alien)
+      increaseScore(1)
+      removeAlien(event.alien)
     elsif (event.type == :gunFired)
-      @bullets.push(event.bullet)
+      addBullet(event.bullet)
     end
+  end
+
+  def increaseScore(by=1)
+    @score = @score + 1
   end
 
   def move
@@ -42,10 +46,18 @@ class SpaceInvaders
     alien.addObserver(self)
     @aliens.push(alien)
   end
+
+  def removeAlien(alien)
+    @aliens.delete(alien)
+  end
   
   def addGun(gun)
     gun.addObserver(self)
     @gun = gun
+  end
+
+  def addBullet(bullet)
+      @bullets.push(bullet)
   end
 end
 
