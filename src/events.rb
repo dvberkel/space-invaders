@@ -1,4 +1,8 @@
 class AlienDied
+  attr_reader :alien
+  def initialize(alien)
+    @alien = alien
+  end
 end
 
 class GunFired
