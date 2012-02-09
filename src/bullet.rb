@@ -1,6 +1,7 @@
-class Bullet
+class Bullet < Observable
   attr_reader :location, :boundingBox
   def initialize(options = {})
+    super()
     options = {
       :location => Location.new(0,0), 
       :boundingBox => BoundingBox.new(0,0),
@@ -13,5 +14,9 @@ class Bullet
 
   def move
     @location = @moveStrategy.move(@location)
+  end
+  
+  def explode
+    notifyAll(BulletExploded.new)
   end
 end

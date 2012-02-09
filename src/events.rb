@@ -6,3 +6,6 @@ end
 
 class GunMoved
 end
+
+class BulletExploded
+end
