@@ -1,7 +1,7 @@
-class DiedEvent 
+class AlienDied
 end
 
-class BulletFired
+class GunFired
 end
 
 class GunMoved

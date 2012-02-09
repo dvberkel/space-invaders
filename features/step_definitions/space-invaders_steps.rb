@@ -10,7 +10,7 @@ Given /^a space invaders game at (\d+) points$/ do |startingScore|
 end
 
 Given /^the game received an alien died event$/ do
-  @game.notify DiedEvent.new
+  @game.notify AlienDied.new
 end
 
 When /^a score is asked$/ do

@@ -15,7 +15,7 @@ class Alien < Observable
   end
 
   def die()
-    notifyAll(DiedEvent.new)
+    notifyAll(AlienDied.new)
   end
 
   def move
