@@ -1,3 +1,5 @@
+require 'commands'
+
 class SpaceInvaders
   attr_reader :score
   def initialize(startingScore = 0)
@@ -9,12 +11,8 @@ class SpaceInvaders
   end
   
   def notify(event)
-    if (event.type == :alienDied)
-      increaseScore(1)
-      removeAlien(event.alien)
-    elsif (event.type == :gunFired)
-      addBullet(event.bullet)
-    end
+    command = CommandFactory.createCommandFrom(event)
+    command.perform(self)
   end
 
   def increaseScore(by=1)
