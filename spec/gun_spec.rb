@@ -40,7 +40,7 @@ describe("gun") do
       gun.location.should == Location.new(0,0)
     end
 
-    it "should default do notify movement" do
+    it "should default not notify movement" do
       gun = Gun.new
       gun.addObserver(@observer)
 
