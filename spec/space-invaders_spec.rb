@@ -41,4 +41,17 @@ describe "space-invaders" do
 
     gun.location.should == Location.new(1,0)
   end
+ 
+  it "should kill aliens that are fired upon" do
+    alien = Alien.new({:location => Location.new(0,5)})
+    @game.addAlien(alien)
+    gun = Gun.new({:location => Location.new(0,0)})
+    @game.addGun(gun)
+    
+    gun.fire
+    @game.move
+    @game.collisionDetection
+
+    @game.score.should == 1
+  end
  end

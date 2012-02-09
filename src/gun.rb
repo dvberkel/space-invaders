@@ -16,7 +16,7 @@ class Gun < Observable
   end
 
   def fire
-    notifyAll(GunFired.new)
+    notifyAll(GunFired.new(Bullet.new({:location => @location})))
   end
 
   def move
