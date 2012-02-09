@@ -36,6 +36,16 @@ describe("gun") do
       gun.location.should == Location.new(0,0)
     end
 
+    it "should default do notify movement" do
+      gun = Gun.new
+      observer = GunObserver.new
+      gun.addObserver(observer)
+
+      gun.move
+
+      observer.gunMoved?.should == false
+    end
+
     it "should be determined by a move strategy" do
       gun = Gun.new({:moveStrategy => Linear.new(Location.new(0,3))})
 
@@ -43,19 +53,35 @@ describe("gun") do
 
       gun.location.should == Location.new(0,3)
     end
+    
+    it "should be notified" do
+      gun = Gun.new({:moveStrategy => Linear.new(Location.new(3,0))})
+      observer = GunObserver.new
+      gun.addObserver(observer)
+
+      gun.move
+
+      observer.gunMoved?.should == true
+    end
   end
 end
 
 class GunObserver
   def initialize
     @fired = false
+    @moved = false
   end
   
   def notify(event)
     @fired = true
+    @moved = true
   end
 
   def gunFired?
     @fired
+  end
+
+  def gunMoved?
+    @moved
   end
 end
