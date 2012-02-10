@@ -34,3 +34,15 @@ class BulletExploded < Event
     @bullet = bullet
   end
 end
+
+class RightSignaled < Event
+  def initialize
+    super(:rightSignaled)
+  end
+end
+
+class LeftSignaled < Event
+  def initialize
+    super(:leftSignaled)
+  end
+end
