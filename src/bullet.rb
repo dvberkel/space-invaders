@@ -17,6 +17,6 @@ class Bullet < Observable
   end
   
   def explode
-    notifyAll(BulletExploded.new)
+    notifyAll(BulletExploded.new(self))
   end
 end

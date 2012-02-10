@@ -55,7 +55,12 @@ class SpaceInvaders
   end
 
   def addBullet(bullet)
-      @bullets.push(bullet)
+    bullet.addObserver(self)
+    @bullets.push(bullet)
+  end
+  
+  def removeBullet(bullet)
+    @bullets.delete(bullet)
   end
 end
 

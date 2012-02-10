@@ -4,6 +4,8 @@ class CommandFactory
       return AlienDiedCommand.new(event.alien)
     elsif (event.type == :gunFired)
       return GunFiredCommand.new(event.bullet)
+    elsif (event.type == :bulletExploded)
+      return BulletExplodedCommand.new(event.bullet)
     end
     return NullCommand.new
   end
@@ -27,6 +29,16 @@ class GunFiredCommand
   
   def perform(game)
     game.addBullet(@bullet)
+  end
+end
+
+class BulletExplodedCommand
+  def initialize(bullet)
+    @bullet = bullet
+  end
+  
+  def perform(game)
+    game.removeBullet(@bullet)
   end
 end
 

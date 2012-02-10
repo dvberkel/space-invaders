@@ -28,7 +28,9 @@ class GunMoved < Event
 end
 
 class BulletExploded < Event
-  def initialize
+  attr_reader :bullet
+  def initialize(bullet)
     super(:bulletExploded)
+    @bullet = bullet
   end
 end

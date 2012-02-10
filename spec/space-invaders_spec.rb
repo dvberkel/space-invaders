@@ -54,4 +54,14 @@ describe "space-invaders" do
 
     @game.score.should == 1
   end
+
+  it "should not move exploded bullets" do
+    bullet = Bullet.new
+    @game.addBullet(bullet)
+
+    bullet.explode
+    @game.move
+
+    bullet.location.should == Location.new(0,0)
+  end
  end
