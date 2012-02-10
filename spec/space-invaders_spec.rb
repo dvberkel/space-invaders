@@ -15,37 +15,37 @@ describe "space-invaders" do
   end
 
   it "should move monitored aliens" do
-    alien = Alien.new({:moveStrategy => Linear.new(Location.new(1,0))})
+    alien = Alien.new({:moveStrategy => Linear.new(Vector.new(1,0))})
     @game.addAlien(alien)
 
     @game.move
 
-    alien.location.should == Location.new(1,0)
+    alien.location.should == Vector.new(1,0)
   end
 
   it "should not move dead aliens" do
-    alien = Alien.new({:moveStrategy => Linear.new(Location.new(1,0))})
+    alien = Alien.new({:moveStrategy => Linear.new(Vector.new(1,0))})
     @game.addAlien(alien)
     
     alien.die
     @game.move
 
-    alien.location.should == Location.new(0,0)
+    alien.location.should == Vector.new(0,0)
   end
 
   it "should monitor guns and move them" do
-    gun = Gun.new({:moveStrategy => Linear.new(Location.new(1,0))})
+    gun = Gun.new({:moveStrategy => Linear.new(Vector.new(1,0))})
     @game.addGun(gun)
 
     @game.move
 
-    gun.location.should == Location.new(1,0)
+    gun.location.should == Vector.new(1,0)
   end
  
   it "should kill aliens that are fired upon" do
-    alien = Alien.new({:location => Location.new(0,5)})
+    alien = Alien.new({:location => Vector.new(0,5)})
     @game.addAlien(alien)
-    gun = Gun.new({:location => Location.new(0,0)})
+    gun = Gun.new({:location => Vector.new(0,0)})
     @game.addGun(gun)
     
     gun.fire
@@ -62,6 +62,6 @@ describe "space-invaders" do
     bullet.explode
     @game.move
 
-    bullet.location.should == Location.new(0,0)
+    bullet.location.should == Vector.new(0,0)
   end
  end

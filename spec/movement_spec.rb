@@ -9,15 +9,15 @@ describe "movement" do
 
       bullet.move
 
-      bullet.location.should == Location.new(0,5)
+      bullet.location.should == Vector.new(0,5)
     end
     
     it "should be in a straight line upwards" do
-      bullet = Bullet.new({:location => Location.new(1,0)})
+      bullet = Bullet.new({:location => Vector.new(1,0)})
 
       bullet.move
 
-      bullet.location.should == Location.new(1,5)
+      bullet.location.should == Vector.new(1,5)
     end
   end
 
@@ -27,15 +27,15 @@ describe "movement" do
       
       alien.move
 
-      alien.location.should == Location.new(0,0)
+      alien.location.should == Vector.new(0,0)
     end
 
     it "should be determined by a strategy" do
-      alien = Alien.new({:moveStrategy => Linear.new(Location.new(1,0))})
+      alien = Alien.new({:moveStrategy => Linear.new(Vector.new(1,0))})
 
       alien.move
       
-      alien.location.should == Location.new(1,0)
+      alien.location.should == Vector.new(1,0)
     end
   end
 end

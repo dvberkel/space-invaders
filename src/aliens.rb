@@ -8,7 +8,7 @@ class Alien < Observable
   def initialize(options = {})
     super()
     options = {
-      :location => Location.new(0,0), :boundingBox => BoundingBox.new(4,4), :moveStrategy => StandStill.new()}.merge(options)
+      :location => Vector.new(0,0), :boundingBox => BoundingBox.new(4,4), :moveStrategy => StandStill.new()}.merge(options)
     @location = options[:location]
     @boundingBox = options[:boundingBox]
     @moveStrategy = options[:moveStrategy]

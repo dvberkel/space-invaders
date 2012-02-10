@@ -37,7 +37,7 @@ describe("gun") do
 
       gun.move
 
-      gun.location.should == Location.new(0,0)
+      gun.location.should == Vector.new(0,0)
     end
 
     it "should default not notify movement" do
@@ -50,15 +50,15 @@ describe("gun") do
     end
 
     it "should be determined by a move strategy" do
-      gun = Gun.new({:moveStrategy => Linear.new(Location.new(0,3))})
+      gun = Gun.new({:moveStrategy => Linear.new(Vector.new(0,3))})
 
       gun.move
 
-      gun.location.should == Location.new(0,3)
+      gun.location.should == Vector.new(0,3)
     end
     
     it "should be notified" do
-      gun = Gun.new({:moveStrategy => Linear.new(Location.new(3,0))})
+      gun = Gun.new({:moveStrategy => Linear.new(Vector.new(3,0))})
       gun.addObserver(@observer)
 
       gun.move

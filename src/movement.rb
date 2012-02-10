@@ -5,9 +5,9 @@ class EventedMoveStrategy
   
   def move(location)
     if (@event.type == :rightSignaled)
-      Location.new(1,0)
+      Vector.new(1,0)
     elsif (@event.type == :leftSignaled)
-      Location.new(-1,0)
+      Vector.new(-1,0)
     end
   end
 end

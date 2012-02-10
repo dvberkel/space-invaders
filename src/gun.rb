@@ -8,7 +8,7 @@ class Gun < Observable
   def initialize(options = {})
     super()
     options = {
-      :location => Location.new(0,0),
+      :location => Vector.new(0,0),
       :moveStrategy => StandStill.new
     }.merge(options)
     @location = options[:location]

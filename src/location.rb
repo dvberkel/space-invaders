@@ -1,4 +1,4 @@
-class Location
+class Vector
   attr_reader :x, :y
   def initialize(x, y)
     @x = x
@@ -6,10 +6,10 @@ class Location
   end
   
   def displaceBy(displacement)
-    return Location.new(@x + displacement.x, @y + displacement.y)
+    return Vector.new(@x + displacement.x, @y + displacement.y)
   end
 
-  def ==(location)
-    return @x == location.x && @y == location.y
+  def ==(vector)
+    return @x == vector.x && @y == vector.y
   end
 end

@@ -6,7 +6,7 @@ end
 
 class BoundingBox
   attr_reader :width, :height, :location
-  def initialize(width, height, location = Location.new(0,0))
+  def initialize(width, height, location = Vector.new(0,0))
     @width = width
     @height = height
     @location = location
