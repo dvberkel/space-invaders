@@ -1,5 +1,6 @@
 class EventedMoveStrategy
   def initialize
+    @displacement = Vector.new(1,0)
     @events = []
   end
 
@@ -11,9 +12,9 @@ class EventedMoveStrategy
     result = location
     @events.each do |event|
       if (event.type == :rightSignaled)
-        result = result.displaceBy(Vector.new(1,0))
+        result = result.displaceBy(@displacement)
       elsif (event.type == :leftSignaled)
-        result = result.displaceBy(Vector.new(1,0).times(-1))
+        result = result.displaceBy(@displacement.times(-1))
       end
     end
     result
