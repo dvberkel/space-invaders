@@ -28,4 +28,16 @@ describe "event strategy" do
 
     strategy.move(Vector.new(0,0)).should == Vector.new(2,0)
   end
+
+  it "should purge events after move" do
+    strategy = EventedMoveStrategy.new
+
+    strategy.notify(RightSignaled.new)
+    strategy.notify(RightSignaled.new)
+    strategy.notify(RightSignaled.new)
+    strategy.notify(LeftSignaled.new)
+
+    strategy.move(Vector.new(0,0)).should == Vector.new(2,0)
+    strategy.move(Vector.new(0,0)).should == Vector.new(0,0)
+  end
 end

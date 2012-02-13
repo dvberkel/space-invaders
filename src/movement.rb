@@ -13,6 +13,7 @@ class EventedMoveStrategy
     @events.each do |event|
       result = result.displaceBy(@displacement.times(event.direction))
     end
+    @events.clear
     result
   end
 end
