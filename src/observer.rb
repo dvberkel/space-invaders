@@ -13,4 +13,8 @@ class Observable
   def addObserver(observer)
     @observers.push(observer)
   end
+
+  def removeObserver(observer)
+    @observers.delete(observer)
+  end
 end

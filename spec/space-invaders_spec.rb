@@ -64,4 +64,14 @@ describe "space-invaders" do
 
     bullet.location.should == Vector.new(0,0)
   end
+
+  it "should not receive points for already dead aliens" do
+    alien = Alien.new
+    @game.addAlien(alien)
+    
+    alien.die
+    alien.die
+
+    @game.score.should == 1
+  end
  end

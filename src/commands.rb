@@ -19,6 +19,7 @@ class AlienDiedCommand
   def perform(game)
     game.increaseScore(1)
     game.removeAlien(@alien)
+    @alien.removeObserver(game)
   end
 end
 
