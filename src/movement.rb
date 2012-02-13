@@ -13,7 +13,7 @@ class EventedMoveStrategy
       if (event.type == :rightSignaled)
         result = result.displaceBy(Vector.new(1,0))
       elsif (event.type == :leftSignaled)
-        result = result.displaceBy(Vector.new(-1,0))
+        result = result.displaceBy(Vector.new(1,0).times(-1))
       end
     end
     result

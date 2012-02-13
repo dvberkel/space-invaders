@@ -8,6 +8,10 @@ class Vector
   def displaceBy(displacement)
     return Vector.new(@x + displacement.x, @y + displacement.y)
   end
+  
+  def times(scalar)
+    return Vector.new(@x * scalar, @y * scalar)
+  end
 
   def ==(vector)
     return @x == vector.x && @y == vector.y
