@@ -40,6 +40,7 @@ class BulletExplodedCommand
   
   def perform(game)
     game.removeBullet(@bullet)
+    @bullet.removeObserver(game)
   end
 end
 
