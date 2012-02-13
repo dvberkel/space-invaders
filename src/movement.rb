@@ -12,9 +12,9 @@ class EventedMoveStrategy
     result = location
     @events.each do |event|
       if (event.type == :rightSignaled)
-        result = result.displaceBy(@displacement)
+        result = result.displaceBy(@displacement.times(event.direction))
       elsif (event.type == :leftSignaled)
-        result = result.displaceBy(@displacement.times(-1))
+        result = result.displaceBy(@displacement.times(event.direction))
       end
     end
     result

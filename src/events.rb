@@ -39,10 +39,18 @@ class RightSignaled < Event
   def initialize
     super(:rightSignaled)
   end
+  
+  def direction
+    return 1
+  end
 end
 
 class LeftSignaled < Event
   def initialize
     super(:leftSignaled)
+  end
+
+  def direction
+    return -1
   end
 end
