@@ -1,4 +1,5 @@
 require 'commands'
+require 'gun'
 
 class SpaceInvaders
   attr_reader :score
