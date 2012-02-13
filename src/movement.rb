@@ -11,11 +11,7 @@ class EventedMoveStrategy
   def move(location)
     result = location
     @events.each do |event|
-      if (event.type == :rightSignaled)
-        result = result.displaceBy(@displacement.times(event.direction))
-      elsif (event.type == :leftSignaled)
-        result = result.displaceBy(@displacement.times(event.direction))
-      end
+      result = result.displaceBy(@displacement.times(event.direction))
     end
     result
   end
