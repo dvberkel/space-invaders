@@ -48,6 +48,7 @@ class SpaceInvaders
 
   def removeAlien(alien)
     @aliens.delete(alien)
+    alien.removeObserver(self)
   end
   
   def addGun(gun)
@@ -62,6 +63,7 @@ class SpaceInvaders
   
   def removeBullet(bullet)
     @bullets.delete(bullet)
+    bullet.removeObserver(self)
   end
 end
 
