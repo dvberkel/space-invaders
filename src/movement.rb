@@ -1,14 +1,22 @@
 class EventedMoveStrategy
+  def initialize
+    @events = []
+  end
+
   def notify(event)
-    @event = event
+    @events.push(event)
   end
   
   def move(location)
-    if (@event.type == :rightSignaled)
-      Vector.new(1,0)
-    elsif (@event.type == :leftSignaled)
-      Vector.new(-1,0)
+    result = location
+    @events.each do |event|
+      if (event.type == :rightSignaled)
+        result = result.displaceBy(Vector.new(1,0))
+      elsif (event.type == :leftSignaled)
+        result = result.displaceBy(Vector.new(-1,0))
+      end
     end
+    result
   end
 end
 
