@@ -60,3 +60,10 @@ class LeftSignaled < Event
     return -1
   end
 end
+
+
+class FireSignaled < Event
+  def initialize
+    super(:fireSignaled)
+  end
+end

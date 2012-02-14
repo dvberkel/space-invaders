@@ -16,7 +16,11 @@ class Gun < Observable
   end
 
   def notify(event)
-    @moveStrategy.notify(event)
+    if (event.type == :fireSignaled)
+      fire
+    else
+      @moveStrategy.notify(event)
+    end
   end
 
   def fire

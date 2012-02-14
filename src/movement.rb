@@ -1,11 +1,17 @@
-class EventedMoveStrategy
+class MovementStrategy
+  def notify(event)
+    # do nothing
+  end
+end
+
+class EventedMoveStrategy < MovementStrategy
   def initialize
     @displacement = Vector.new(1,0)
     @events = []
   end
 
   def notify(event)
-    @events.push(event)
+      @events.push(event)
   end
   
   def move(location)
@@ -18,7 +24,7 @@ class EventedMoveStrategy
   end
 end
 
-class Linear
+class Linear < MovementStrategy
   def initialize(displacement)
     @displacement = displacement
   end
@@ -28,7 +34,7 @@ class Linear
   end
 end
 
-class StandStill
+class StandStill < MovementStrategy
   def move(location)
     location
   end

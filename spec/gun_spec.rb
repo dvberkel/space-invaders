@@ -68,7 +68,7 @@ describe("gun") do
   end
   
   describe("events") do
-    describe("for moving") do
+    it "should make the gun move" do
       strategy = EventedMoveStrategy.new
       gun = Gun.new({:moveStrategy => strategy})
       
@@ -77,6 +77,16 @@ describe("gun") do
       gun.move
 
       gun.location.should == Vector.new(2,0)
+    end
+
+    it "should make the gun fire" do
+      observer = GunObserver.new
+      gun = Gun.new
+      gun.addObserver(observer)
+      
+      gun.notify(FireSignaled.new)
+
+      observer.gunFired?.should == true
     end
   end
 end
