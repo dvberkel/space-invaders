@@ -66,6 +66,19 @@ describe("gun") do
       @observer.gunMoved?.should == true
     end
   end
+  
+  describe("events") do
+    describe("for moving") do
+      strategy = EventedMoveStrategy.new
+      gun = Gun.new({:moveStrategy => strategy})
+      
+      gun.notify(RightSignaled.new)
+      gun.notify(RightSignaled.new)
+      gun.move
+
+      gun.location.should == Vector.new(2,0)
+    end
+  end
 end
 
 class GunObserver

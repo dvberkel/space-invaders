@@ -15,6 +15,10 @@ class Gun < Observable
     @moveStrategy = options[:moveStrategy]
   end
 
+  def notify(event)
+    @moveStrategy.notify(event)
+  end
+
   def fire
     notifyAll(GunFired.new(Bullet.new({:location => @location})))
   end
