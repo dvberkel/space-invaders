@@ -41,6 +41,12 @@ class Alien < Piece
   end
 end
 
+class Gun < Piece
+  def initialize(x, y)
+    super("resource/image/gun.png", x, y)
+  end
+end
+
 
 class GuiView
   include Rubygame
@@ -50,6 +56,7 @@ class GuiView
     @background = Surface.load("resource/image/background.png")
     @events = EventQueue.new
     @alien = Alien.new(10, 10)
+    @gun = Gun.new(375,500)
   end
 
   def eventLoop()
@@ -78,6 +85,7 @@ class GuiView
   def draw()
     @background.blit(@screen, [0,0])
     @alien.blit(@screen)
+    @gun.blit(@screen)
     @screen.update
   end
 end
