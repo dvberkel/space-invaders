@@ -40,7 +40,8 @@ class GuiView
   include Rubygame
 
   def initialize()
-    @screen = Screen.new [640, 480]
+    @screen = Screen.new [775, 572]
+    @background = Surface.load("resource/image/background.png")
     @events = EventQueue.new
     @alien = Alien.new(10, 10)
   end
@@ -69,7 +70,7 @@ class GuiView
   end
 
   def draw()
-    @screen.fill [0, 0, 0]
+    @background.blit(@screen, [0,0])
     @alien.blit(@screen)
     @screen.update
   end
