@@ -1,9 +1,10 @@
 require 'commands'
 require 'gun'
 
-class SpaceInvaders
+class SpaceInvaders < Observable
   attr_reader :score
   def initialize(startingScore = 0)
+    super()
     @detector = CollisionDetector.new
     @score = startingScore
     @aliens = []
@@ -14,6 +15,7 @@ class SpaceInvaders
   def notify(event)
     command = CommandFactory.createCommandFrom(event)
     command.perform(self)
+    notifyAll(event)
   end
 
   def increaseScore(by=1)
@@ -44,6 +46,7 @@ class SpaceInvaders
   def addAlien(alien)
     alien.addObserver(self)
     @aliens.push(alien)
+    notifyAll(AlienAdded.new(alien))
   end
 
   def removeAlien(alien)
@@ -54,6 +57,7 @@ class SpaceInvaders
   def addGun(gun)
     gun.addObserver(self)
     @gun = gun
+    notifyAll(GunAdded.new(gun))
   end
 
   def addBullet(bullet)
