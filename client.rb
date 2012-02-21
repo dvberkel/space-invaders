@@ -5,13 +5,13 @@ require 'bundler/setup'
 
 require 'rubygame'
 
-class Alien
-  def initialize(dx=1, dy=1)
-    @surface = Rubygame::Surface.load("resource/image/alien.png")
-    @x = 10
-    @y = 10
-    @dx = dx
-    @dy = dy
+class Piece
+  def initialize(resource, x=0, y=0)
+    @surface = Rubygame::Surface.load(resource)
+    @x = x
+    @y = y
+    @dx = 10
+    @dy = 10
   end
   
   def blit(screen)
@@ -32,6 +32,12 @@ class Alien
 
   def right()
     @x += @dx
+  end
+end
+
+class Alien < Piece
+  def initialize(x, y)
+    super("resource/image/alien-0.png", x, y)
   end
 end
 
