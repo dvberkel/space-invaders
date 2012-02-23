@@ -46,6 +46,15 @@ describe "the events game fires when" do
 
     @observer.event().type().should == :alienDied
   end
+
+  it "moving a bullet" do
+    bullet = Bullet.new
+    @game.addBullet(bullet)
+
+    bullet.move
+
+    @observer.event().type().should == :bulletMoved
+  end
 end
 
 class EventObserver

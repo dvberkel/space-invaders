@@ -13,7 +13,11 @@ class Bullet < Observable
   end
 
   def move
-    @location = @moveStrategy.move(@location)
+    previousLocation = @location
+    @location = @moveStrategy.move(previousLocation)
+    if (@location != previousLocation)
+      notifyAll(BulletMoved.new)
+    end
   end
   
   def explode

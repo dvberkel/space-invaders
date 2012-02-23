@@ -54,6 +54,12 @@ class BulletExploded < Event
   end
 end
 
+class BulletMoved < Event
+  def initialize
+    super(:bulletMoved)
+  end
+end
+
 class RightSignaled < Event
   def initialize
     super(:rightSignaled)
