@@ -31,7 +31,7 @@ end
 
 class AlienMoved < Moved
   def initialize(alien)
-    super(:alienMoved, "a" + alien.id().to_s, alien.location)
+    super(:alienMoved, alien.id, alien.location)
   end
 end
 
@@ -52,7 +52,7 @@ end
 
 class GunMoved < Moved
   def initialize(gun)
-    super(:gunMoved, "g", gun.location)
+    super(:gunMoved, gun.id, gun.location)
   end
 end
 
@@ -72,7 +72,7 @@ end
 
 class BulletMoved < Moved
   def initialize(bullet)
-    super(:bulletMoved, "b" + bullet.id().to_s, bullet.location)
+    super(:bulletMoved, bullet.id(), bullet.location)
   end
 end
 

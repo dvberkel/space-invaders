@@ -55,7 +55,7 @@ describe "the events game fires when" do
 
     event = @observer.event()
     event.type().should == :bulletMoved
-    event.id().should match /b\d+/
+    event.id().to_s().should match /^\d+$/
     event.location().should == Vector.new(0,1)
   end
 
@@ -67,7 +67,7 @@ describe "the events game fires when" do
 
     event = @observer.event()
     event.type().should == :gunMoved
-    event.id().should == "g"
+    event.id().to_s().should match /^\d+$/
     event.location().should == Vector.new(1,0)
   end
 
@@ -79,7 +79,7 @@ describe "the events game fires when" do
     
     event = @observer.event()
     event.type().should == :alienMoved
-    event.id().should match /a\d+/
+    event.id().to_s().should match /^\d+$/
     event.location().should == Vector.new(1,0)
   end
 

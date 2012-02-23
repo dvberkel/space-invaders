@@ -2,8 +2,9 @@ require 'observer'
 require 'events'
 require 'location'
 require 'movement'
+require 'entity'
 
-class Gun < Observable
+class Gun < Entity
   include Moveable
   attr_reader :location
   def initialize(options = {})
