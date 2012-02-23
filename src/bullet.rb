@@ -1,4 +1,7 @@
+require 'movement'
+
 class Bullet < Observable
+  include Moveable
   attr_reader :location, :boundingBox
   def initialize(options = {})
     super()
@@ -12,12 +15,8 @@ class Bullet < Observable
     @moveStrategy = options[:moveStrategy]
   end
 
-  def move
-    previousLocation = @location
-    @location = @moveStrategy.move(previousLocation)
-    if (@location != previousLocation)
-      notifyAll(BulletMoved.new)
-    end
+  def movementEvent()
+    BulletMoved.new
   end
   
   def explode

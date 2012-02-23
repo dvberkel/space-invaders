@@ -4,6 +4,7 @@ require 'location'
 require 'movement'
 
 class Gun < Observable
+  include Moveable
   attr_reader :location
   def initialize(options = {})
     super()
@@ -27,11 +28,7 @@ class Gun < Observable
     notifyAll(GunFired.new(Bullet.new({:location => @location})))
   end
 
-  def move
-    previousLocation = @location
-    @location = @moveStrategy.move(previousLocation)
-    if (@location != previousLocation)
-      notifyAll(GunMoved.new)
-    end
+  def movementEvent()
+    GunMoved.new()
   end
 end
