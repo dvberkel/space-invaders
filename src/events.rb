@@ -63,8 +63,8 @@ class BulletExploded < Event
 end
 
 class BulletMoved < Moved
-  def initialize
-    super(:bulletMoved, "b0")
+  def initialize(bullet)
+    super(:bulletMoved, "b" + bullet.id().to_s)
   end
 end
 

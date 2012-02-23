@@ -1,6 +1,7 @@
 require 'movement'
+require 'entity'
 
-class Bullet < Observable
+class Bullet < Entity
   include Moveable
   attr_reader :location, :boundingBox
   def initialize(options = {})
@@ -16,7 +17,7 @@ class Bullet < Observable
   end
 
   def movementEvent()
-    BulletMoved.new
+    BulletMoved.new(self)
   end
   
   def explode

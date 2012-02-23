@@ -69,15 +69,30 @@ describe "the events game fires when" do
     event.id().should == "g"
   end
 
-  it "moving a alien" do
+  it "moving an alien" do
     alien = Alien.new({moveStrategy: Linear.new(Vector.new(1,0))})
-    @game.addBullet(alien)
+    @game.addAlien(alien)
 
     alien.move
     
     event = @observer.event()
     event.type().should == :alienMoved
     event.id().should match /a\d+/
+  end
+
+  it "moving different bullets" do
+    bulletA = Bullet.new
+    bulletB = Bullet.new
+    @game.addBullet(bulletA)
+    @game.addBullet(bulletB)
+
+    bulletA.move
+    eventA = @observer.event()
+    bulletB.move
+    eventB = @observer.event()
+    
+    eventA.id().should_not == eventB.id()
+    
   end
 end
 
