@@ -29,6 +29,6 @@ class Gun < Observable
   end
 
   def movementEvent()
-    GunMoved.new()
+    GunMoved.new(self)
   end
 end

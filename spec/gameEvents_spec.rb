@@ -48,7 +48,7 @@ describe "the events game fires when" do
   end
 
   it "moving a bullet" do
-    bullet = Bullet.new
+    bullet = Bullet.new({moveStrategy: Linear.new(Vector.new(0,1))})
     @game.addBullet(bullet)
 
     bullet.move
@@ -56,6 +56,7 @@ describe "the events game fires when" do
     event = @observer.event()
     event.type().should == :bulletMoved
     event.id().should match /b\d+/
+    event.location().should == Vector.new(0,1)
   end
 
   it "moving a gun" do
@@ -67,6 +68,7 @@ describe "the events game fires when" do
     event = @observer.event()
     event.type().should == :gunMoved
     event.id().should == "g"
+    event.location().should == Vector.new(1,0)
   end
 
   it "moving an alien" do
@@ -78,6 +80,7 @@ describe "the events game fires when" do
     event = @observer.event()
     event.type().should == :alienMoved
     event.id().should match /a\d+/
+    event.location().should == Vector.new(1,0)
   end
 
   it "moving different bullets" do

@@ -14,16 +14,17 @@ class AlienDied < Event
 end
 
 class Moved < Event
-  attr_reader :id
-  def initialize(type, id)
+  attr_reader :id, :location
+  def initialize(type, id, location)
     super(type)
     @id = id
+    @location = location
   end
 end
 
 class AlienMoved < Moved
   def initialize(alien)
-    super(:alienMoved, "a" + alien.id().to_s)
+    super(:alienMoved, "a" + alien.id().to_s, alien.location)
   end
 end
 
@@ -43,8 +44,8 @@ class GunFired < Event
 end
 
 class GunMoved < Moved
-  def initialize
-    super(:gunMoved, "g")
+  def initialize(gun)
+    super(:gunMoved, "g", gun.location)
   end
 end
 
@@ -64,7 +65,7 @@ end
 
 class BulletMoved < Moved
   def initialize(bullet)
-    super(:bulletMoved, "b" + bullet.id().to_s)
+    super(:bulletMoved, "b" + bullet.id().to_s, bullet.location)
   end
 end
 
