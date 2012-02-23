@@ -2,8 +2,9 @@ require 'observer'
 require 'location'
 require 'events'
 require 'movement'
+require 'entity'
 
-class Alien < Observable
+class Alien < Entity
   include Moveable
   attr_reader :location, :boundingBox
   def initialize(options = {})
@@ -20,6 +21,6 @@ class Alien < Observable
   end
 
   def movementEvent()
-    AlienMoved.new
+    AlienMoved.new(self)
   end
 end

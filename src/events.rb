@@ -22,8 +22,8 @@ class Moved < Event
 end
 
 class AlienMoved < Moved
-  def initialize
-    super(:alienMoved, "a0")
+  def initialize(alien)
+    super(:alienMoved, "a" + alien.id().to_s)
   end
 end
 

@@ -92,7 +92,20 @@ describe "the events game fires when" do
     eventB = @observer.event()
     
     eventA.id().should_not == eventB.id()
+  end
+
+  it "moving different aliens" do
+    alienA = Alien.new({moveStrategy: Linear.new(Vector.new(1,0))})
+    alienB = Alien.new({moveStrategy: Linear.new(Vector.new(1,0))})
+    @game.addAlien(alienA)
+    @game.addAlien(alienB)
+
+    alienA.move
+    eventA = @observer.event()
+    alienB.move
+    eventB = @observer.event()
     
+    eventA.id().should_not == eventB.id()
   end
 end
 
