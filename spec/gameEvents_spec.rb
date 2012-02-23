@@ -55,6 +55,24 @@ describe "the events game fires when" do
 
     @observer.event().type().should == :bulletMoved
   end
+
+  it "moving a gun" do
+    gun = Gun.new({moveStrategy: Linear.new(Vector.new(1,0))})
+    @game.addBullet(gun)
+
+    gun.move
+
+    @observer.event().type().should == :gunMoved
+  end
+
+  it "moving a alien" do
+    alien = Alien.new({moveStrategy: Linear.new(Vector.new(1,0))})
+    @game.addBullet(alien)
+
+    alien.move
+
+    @observer.event().type().should == :alienMoved
+  end
 end
 
 class EventObserver
