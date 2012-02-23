@@ -5,6 +5,14 @@ class Event
   end
 end
 
+class IdEvent < Event
+  attr_reader :id
+  def initialize(type, id)
+    super(type)
+    @id = id
+  end
+end
+
 class AlienDied < Event
   attr_reader :alien
   def initialize(alien)
@@ -13,11 +21,10 @@ class AlienDied < Event
   end
 end
 
-class Moved < Event
-  attr_reader :id, :location
+class Moved < IdEvent
+  attr_reader :location
   def initialize(type, id, location)
-    super(type)
-    @id = id
+    super(type, id)
     @location = location
   end
 end
