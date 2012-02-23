@@ -13,9 +13,17 @@ class AlienDied < Event
   end
 end
 
-class AlienMoved < Event
+class Moved < Event
+  attr_reader :id
+  def initialize(type, id)
+    super(type)
+    @id = id
+  end
+end
+
+class AlienMoved < Moved
   def initialize
-    super(:alienMoved)
+    super(:alienMoved, "a0")
   end
 end
 
@@ -34,9 +42,9 @@ class GunFired < Event
   end
 end
 
-class GunMoved < Event
+class GunMoved < Moved
   def initialize
-    super(:gunMoved)
+    super(:gunMoved, "g")
   end
 end
 
@@ -54,9 +62,9 @@ class BulletExploded < Event
   end
 end
 
-class BulletMoved < Event
+class BulletMoved < Moved
   def initialize
-    super(:bulletMoved)
+    super(:bulletMoved, "b0")
   end
 end
 
