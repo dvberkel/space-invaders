@@ -1,6 +1,7 @@
 require 'observer'
 require 'location'
 require 'events'
+require 'collision-detector'
 require 'movement'
 require 'entity'
 
