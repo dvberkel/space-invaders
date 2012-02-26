@@ -40,3 +40,10 @@ control the gem versions. Use the following command to fetch all
 necessary gems.
 
     > bundle install
+
+Play
+----
+
+To play a game space invaders execute
+
+    > ruby -I src client.rb
