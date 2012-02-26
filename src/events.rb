@@ -42,6 +42,7 @@ class AlienAdded < Event
   attr_reader :alien
   def initialize(alien)
     super(:alienAdded)
+    @alien = alien
   end
 end
 
@@ -60,8 +61,10 @@ class GunMoved < Moved
 end
 
 class GunAdded < Event
+  attr_reader :gun
   def initialize(gun)
     super(:gunAdded)
+    @gun = gun
   end
 end
 
