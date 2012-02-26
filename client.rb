@@ -116,6 +116,15 @@ class GuiView
           addGun(event.gun)
         when GunFired
           addBullet(event.bullet)
+        when KeyDownEvent
+          case event.key
+          when K_LEFT
+            @game.signal(LeftSignaled.new)
+          when K_RIGHT
+            @game.signal(RightSignaled.new)
+          when K_SPACE
+            @game.signal(FireSignaled.new)
+          end
         end
       end
       draw
