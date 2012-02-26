@@ -4,7 +4,12 @@ require 'location'
 
 class Game < SpaceInvaders
   def start
-    addAlien(Alien.new({:location => Vector.new(0,500)}))
+    (-4..4).each do |ix|
+      (0..2).each do |iy|
+        x,y = 80 * ix, 500 - 50 * iy
+        addAlien(Alien.new({:location => Vector.new(x,y)}))
+      end
+    end
     @gun = Gun.new({:moveStrategy => EventedMoveStrategy.new})
     addGun(@gun)
   end
