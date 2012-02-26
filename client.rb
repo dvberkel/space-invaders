@@ -18,20 +18,25 @@ class Piece
     @surface.blit(screen,[@x, @y])
   end
 
+  def update(x, y)
+    @x = x
+    @y = y
+  end
+
   def up()
-    @y -= @dx
+    self.update(@x, @y - @dy)
   end
 
   def down()
-    @y += @dx
+    self.update(@x, @y + @dy)
   end
 
   def left()
-    @x -= @dx
+    self.update(@x - @dx, @y)
   end
 
   def right()
-    @x += @dx
+    self.update(@x + @dy, @y)
   end
 end
 
@@ -47,6 +52,8 @@ class Gun < Piece
   end
 end
 
+class MoveEvent
+end
 
 class GuiView
   include Rubygame
@@ -61,6 +68,8 @@ class GuiView
 
   def eventLoop()
     loop do
+      event = MoveEvent.new
+      @events.post(event)
       @events.each do |event|
         case event
         when QuitEvent
@@ -76,6 +85,8 @@ class GuiView
           when K_RIGHT 
               @alien.right
           end
+        when MoveEvent
+          @alien.right
         end
       end
       draw
