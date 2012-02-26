@@ -97,6 +97,7 @@ class GuiView
   def eventLoop()
     @game.start()
     loop do
+      @game.tick
       @events.each do |event|
         case event
         when QuitEvent

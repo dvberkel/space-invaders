@@ -9,4 +9,8 @@ class Game < SpaceInvaders
     addGun(gun)
     gun.fire
   end
+
+  def tick
+    move
+  end
 end
