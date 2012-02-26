@@ -13,8 +13,6 @@ class Piece
     @surface = Rubygame::Surface.load(resource)
     @x = x
     @y = y
-    @dx = 10
-    @dy = 10
   end
   
   def blit(screen)
@@ -24,22 +22,6 @@ class Piece
   def update(x, y)
     @x = x
     @y = y
-  end
-
-  def up()
-    self.update(@x, @y - @dy)
-  end
-
-  def down()
-    self.update(@x, @y + @dy)
-  end
-
-  def left()
-    self.update(@x - @dx, @y)
-  end
-
-  def right()
-    self.update(@x + @dy, @y)
   end
 end
 
@@ -71,8 +53,6 @@ class GuiView
     @screen = Screen.new [775, 572]
     @background = Surface.load("resource/image/background.png")
     @events = EventQueue.new
-    @alien = AlienPiece.new(10, 10)
-    @gun = GunPiece.new(375,500)
     @pieces = {}
   end
 
@@ -100,8 +80,6 @@ class GuiView
     self.addGun(Gun.new({:location => Vector.new(50,50)}))
     self.addBullet(Bullet.new({:location => Vector.new(50,30)}))
     loop do
-      event = MoveEvent.new
-      @events.post(event)
       @events.each do |event|
         case event
         when QuitEvent
@@ -117,8 +95,6 @@ class GuiView
           when K_RIGHT 
               @alien.right
           end
-        when MoveEvent
-          @alien.right
         end
       end
       draw
@@ -127,9 +103,7 @@ class GuiView
 
   def draw()
     @background.blit(@screen, [0,0])
-    @alien.blit(@screen)
     @pieces.each_value {|piece| piece.blit(@screen)}
-    @gun.blit(@screen)
     @screen.update
   end
 end
