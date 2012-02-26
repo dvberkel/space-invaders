@@ -21,10 +21,13 @@ class Moved < IdEvent
   end
 end
 
-class AlienDied < Event
+class Finished < IdEvent
+end
+
+class AlienDied < Finished
   attr_reader :alien
   def initialize(alien)
-    super(:alienDied)
+    super(:alienDied, alien.id)
     @alien = alien
   end
 end
@@ -62,10 +65,10 @@ class GunAdded < Event
   end
 end
 
-class BulletExploded < Event
+class BulletExploded < Finished
   attr_reader :bullet
   def initialize(bullet)
-    super(:bulletExploded)
+    super(:bulletExploded, bullet.id)
     @bullet = bullet
   end
 end
