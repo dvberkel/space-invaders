@@ -1,4 +1,8 @@
-class Bullet < Observable
+require 'movement'
+require 'entity'
+
+class Bullet < Entity
+  include Moveable
   attr_reader :location, :boundingBox
   def initialize(options = {})
     super()
@@ -12,8 +16,8 @@ class Bullet < Observable
     @moveStrategy = options[:moveStrategy]
   end
 
-  def move
-    @location = @moveStrategy.move(@location)
+  def movementEvent()
+    BulletMoved.new(self)
   end
   
   def explode

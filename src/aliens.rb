@@ -1,9 +1,11 @@
 require 'observer'
 require 'location'
 require 'events'
+require 'movement'
+require 'entity'
 
-
-class Alien < Observable
+class Alien < Entity
+  include Moveable
   attr_reader :location, :boundingBox
   def initialize(options = {})
     super()
@@ -18,11 +20,7 @@ class Alien < Observable
     notifyAll(AlienDied.new(self))
   end
 
-  def move
-    previousLocation = @location
-    @location = @moveStrategy.move(previousLocation)
-    if (@location != previousLocation)
-      notifyAll(AlienMoved.new)
-    end
+  def movementEvent()
+    AlienMoved.new(self)
   end
 end

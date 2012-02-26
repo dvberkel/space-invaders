@@ -1,3 +1,13 @@
+module Moveable
+  def move
+    previousLocation = @location
+    @location = @moveStrategy.move(previousLocation)
+    if (@location != previousLocation)
+      notifyAll(movementEvent())
+    end
+  end
+end
+
 class MovementStrategy
   def notify(event)
     # do nothing
