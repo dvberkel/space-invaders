@@ -11,8 +11,7 @@ require 'bullet'
 class Piece
   def initialize(resource, x=0, y=0)
     @surface = Rubygame::Surface.load(resource)
-    @x = x
-    @y = y
+    update(x,y)
   end
   
   def blit(screen)
@@ -20,8 +19,13 @@ class Piece
   end
 
   def update(x, y)
+    x, y = transform(x,y)
     @x = x
     @y = y
+  end
+
+  def transform(x, y)
+    return x + 387, -y + 500
   end
 end
 
@@ -88,9 +92,9 @@ class GuiView
   end
 
   def eventLoop()
-    self.addAlien(Alien.new())
-    self.addGun(Gun.new({:location => Vector.new(50,500)}))
-    bullet = Bullet.new({:location => Vector.new(50,50)})
+    self.addAlien(Alien.new({:location => Vector.new(0, 500)}))
+    self.addGun(Gun.new({:location => Vector.new(0,0)}))
+    bullet = Bullet.new({:location => Vector.new(0,10)})
     self.addBullet(bullet)
     bullet.addObserver(self)
     loop do
