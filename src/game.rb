@@ -12,5 +12,6 @@ class Game < SpaceInvaders
 
   def tick
     move
+    collisionDetection
   end
 end

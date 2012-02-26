@@ -69,6 +69,10 @@ class GuiView
   def addPiece(id, piece)
     @pieces[id] = piece
   end
+
+  def removePiece(id)
+    @pieces.delete id
+  end
   
   def addAlien(alien)
     piece = AlienPiece.new(alien.location.x, alien.location.y)
@@ -102,14 +106,16 @@ class GuiView
         case event
         when QuitEvent
           return
+        when Finished
+          removePiece(event.id)
         when Moved
           move(event)
         when AlienAdded
-          self.addAlien(event.alien)
+          addAlien(event.alien)
         when GunAdded
-          self.addGun(event.gun)
+          addGun(event.gun)
         when GunFired
-          self.addBullet(event.bullet)
+          addBullet(event.bullet)
         end
       end
       draw
