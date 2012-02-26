@@ -7,6 +7,7 @@ require 'rubygame'
 require 'aliens'
 require 'gun'
 require 'bullet'
+require 'game'
 
 class Piece
   def initialize(resource, x=0, y=0)
@@ -61,6 +62,8 @@ class GuiView
     @background = Surface.load("resource/image/background.png")
     @events = EventQueue.new
     @pieces = {}
+    @game = Game.new()
+    @game.addObserver(self)
   end
 
   def addPiece(id, piece)
@@ -92,19 +95,20 @@ class GuiView
   end
 
   def eventLoop()
-    self.addAlien(Alien.new({:location => Vector.new(0, 500)}))
-    self.addGun(Gun.new({:location => Vector.new(0,0)}))
-    bullet = Bullet.new({:location => Vector.new(0,10)})
-    self.addBullet(bullet)
-    bullet.addObserver(self)
+    @game.start()
     loop do
-      bullet.move()
       @events.each do |event|
         case event
         when QuitEvent
           return
         when Moved
           move(event)
+        when AlienAdded
+          self.addAlien(event.alien)
+        when GunAdded
+          self.addGun(event.gun)
+        when GunFired
+          self.addBullet(event.bullet)
         end
       end
       draw
