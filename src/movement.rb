@@ -15,8 +15,8 @@ class MovementStrategy
 end
 
 class EventedMoveStrategy < MovementStrategy
-  def initialize
-    @displacement = Vector.new(1,0)
+  def initialize(displacement = Vector.new(1,0))
+    @displacement = displacement
     @events = []
   end
 

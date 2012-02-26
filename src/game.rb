@@ -11,7 +11,7 @@ class Game < SpaceInvaders
         addAlien(Alien.new({:location => Vector.new(x,y), :moveStrategy => @strategy}))
       end
     end
-    @gun = Gun.new({:moveStrategy => EventedMoveStrategy.new})
+    @gun = Gun.new({:moveStrategy => EventedMoveStrategy.new(Vector.new(3,0))})
     addGun(@gun)
   end
 
