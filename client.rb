@@ -6,6 +6,7 @@ require 'bundler/setup'
 require 'rubygame'
 require 'aliens'
 require 'gun'
+require 'bullet'
 
 class Piece
   def initialize(resource, x=0, y=0)
@@ -54,6 +55,12 @@ class GunPiece < Piece
   end
 end
 
+class BulletPiece < Piece
+  def initialize(x, y)
+    super("resource/image/bullet.png", x, y)
+  end
+end
+
 class MoveEvent
 end
 
@@ -83,9 +90,15 @@ class GuiView
     self.addPiece(gun.id, piece)
   end
 
+  def addBullet(bullet)
+    piece = BulletPiece.new(bullet.location.x, bullet.location.y)
+    self.addPiece(bullet.id, piece)
+  end
+
   def eventLoop()
     self.addAlien(Alien.new())
     self.addGun(Gun.new({:location => Vector.new(50,50)}))
+    self.addBullet(Bullet.new({:location => Vector.new(50,30)}))
     loop do
       event = MoveEvent.new
       @events.post(event)
