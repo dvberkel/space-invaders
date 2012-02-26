@@ -16,7 +16,7 @@ class Piece
   end
   
   def blit(screen)
-    @surface.blit(screen,[@x, @y])
+    @surface.blit(screen,[@x - @surface.w/2, @y])
   end
 
   def update(x, y)
