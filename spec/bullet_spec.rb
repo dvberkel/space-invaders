@@ -18,6 +18,16 @@ describe "bullet" do
 
     observer.exploded?.should == true
   end
+
+  it "should explode when it moves above 800" do
+    bullet = Bullet.new({:location => Vector.new(0,799)})
+    observer = BulletObserver.new
+    bullet.addObserver(observer)
+
+    bullet.move
+
+    observer.exploded?.should == true
+  end
 end
 
 class BulletObserver
@@ -26,7 +36,9 @@ class BulletObserver
   end
 
   def notify(event)
-    @exploded = true
+    if event.type == :bulletExploded
+      @exploded = true
+    end
   end
 
   def exploded?

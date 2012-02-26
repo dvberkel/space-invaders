@@ -16,6 +16,13 @@ class Bullet < Entity
     @moveStrategy = options[:moveStrategy]
   end
 
+  def move
+    super()
+    if location.y >= 800
+      explode
+    end
+  end
+
   def movementEvent()
     BulletMoved.new(self)
   end
