@@ -43,12 +43,15 @@ class BulletPiece < Piece
   end
 end
 
-class MoveEvent
+class NullPiece < Piece
+  def update(x,y)
+    # do nothing
+  end
 end
 
 class GuiView
   include Rubygame
-
+  
   def initialize()
     @screen = Screen.new [775, 572]
     @background = Surface.load("resource/image/background.png")
@@ -59,7 +62,7 @@ class GuiView
   def addPiece(id, piece)
     @pieces[id] = piece
   end
-
+  
   def addAlien(alien)
     piece = AlienPiece.new(alien.location.x, alien.location.y)
     self.addPiece(alien.id, piece)
@@ -69,32 +72,35 @@ class GuiView
     piece = GunPiece.new(gun.location.x, gun.location.y)
     self.addPiece(gun.id, piece)
   end
-
+  
   def addBullet(bullet)
     piece = BulletPiece.new(bullet.location.x, bullet.location.y)
     self.addPiece(bullet.id, piece)
   end
 
+  def move(event)
+    piece = @pieces[event.id] || NullPiece
+    piece.update(event.location.x, event.location.y)
+  end
+
+  def notify(event)
+    @events.post(event)
+  end
+
   def eventLoop()
     self.addAlien(Alien.new())
-    self.addGun(Gun.new({:location => Vector.new(50,50)}))
-    self.addBullet(Bullet.new({:location => Vector.new(50,30)}))
+    self.addGun(Gun.new({:location => Vector.new(50,500)}))
+    bullet = Bullet.new({:location => Vector.new(50,50)})
+    self.addBullet(bullet)
+    bullet.addObserver(self)
     loop do
+      bullet.move()
       @events.each do |event|
         case event
         when QuitEvent
           return
-        when KeyDownEvent
-          case event.key 
-          when K_UP
-            @alien.up
-          when K_DOWN 
-              @alien.down
-          when K_LEFT 
-              @alien.left
-          when K_RIGHT 
-              @alien.right
-          end
+        when Moved
+          move(event)
         end
       end
       draw
