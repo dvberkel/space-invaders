@@ -2,5 +2,26 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    z-index: -1
+    z-index: -1;
+}
+
+.column {
+    width: 50%;
+}
+
+.left {
+    position: absolute;
+    right: 50%
+}
+
+.right {
+    position: absolute;
+    left: 50%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0%;
+    margin-left: auto;
+    margin-right: auto;
 }

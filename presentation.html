@@ -4,33 +4,165 @@
     <link rel="stylesheet" href="deck/core/deck.core.css"/>
     <link rel="stylesheet" href="deck/themes/style/neon.css"/>
     <link rel="stylesheet" href="deck/transitions/horizontal-slide.css"/>
+    <link rel="stylesheet" href="google-code-prettify/prettify.css"/>
     <link rel="stylesheet" href="css/presentation.css"/>
     <script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="lib/modernizr.custom.js"></script>
     <script type="text/javascript" src="deck/core/deck.core.js"></script>
+    <script type="text/javascript" src="google-code-prettify/prettify.js"></script>
     <script type="text/javascript" src="js/presentation.js"></script>
   </head>
   <body class="deck-container">
     <section class="slide">
-     <h1>Space Invaders</h1> 
-     <img src="image/ruby-300x300.png" class="ruby"/>
+      <h1>Space Invaders</h1> 
+      <img src="image/ruby-300x300.png" class="ruby"/>
+    </section>
+    
+    <section class="slide">
+      <h2>Agenda</h2>
+      <ul>
+	<li>Agenda</li>
+	<li>Introduction</li>
+	<li>Experience</li>
+	<li>Outline</li>
+	<li>Details</li>
+	<li>Problems</li>
+	<li>Improvements</li>
+	<li>Explorations</li>
+      </ul>
     </section>
 
     <section class="slide">
-     <h2>Agenda</h2>
-     <ul>
-       <li>Agenda</li>
-       <li>Introduction</li>
-       <li>Experience</li>
-       <li>Outline</li>
-       <li>Details</li>
-       <li>Problems</li>
-       <li>Improvements</li>
-       <li>Explorations</li>
-     </ul>
+      <h2>Introduction</h2>
+      <div class="left column">
+	<h3>Who am I?</h3>
+	<ul>
+	  <li>Daan van Berkel</li>
+	  <li>Wife Marlies</li>
+	  <li>Daughter Sophie</li>
+	  <li>Work at Luminis</li>
+	</ul>
+      </div>
+      <div class="right column"><img src="image/pair-programming.jpg"/></div>
     </section>
 
     <section class="slide">
+      <h2>Experience</h2>
+      <div class="left column">
+	<h3>Inexperienced</h3>
+	<ul>
+	  <li>Dabbled in Ruby</li>
+	  <li>Markov Project</li>
+	  <li>Smallest Federated Wiki</li>
+	  <li><em>Space Invaders</em></li>
+	</ul>
+      </div>
+      <div class="right column"><img src="image/book.jpg"/></div>
+    </section>
+
+    <section class="slide">
+      <h2>Outline</h2>
+      <div class="left column">
+	<h3>Governing Principles</h3>
+	<ul>
+	  <li>Domain Driven Design</li>
+	  <li>Observer Pattern</li>
+	  <li>Model View Controller Pattern</li>
+	</ul>
+      </div>
+      <div class="right column">
+	<img class="slide" style="position: absolute; top: 0%; margin-left: auto; margin-right: auto;" src="image/DDDSunflower.png"/>
+	<img class="slide" style="position: absolute; top: 0%; margin-left: auto; margin-right: auto;" src="image/observer.jpg"/>
+	<img class="slide" style="position: absolute; top: 0%; margin-left: auto; margin-right: auto;" src="image/mvc.png"/>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Details</h2>
+      <div class="left column">
+	<pre>
+|-- src
+    |-- aliens.rb
+    |-- bullet.rb
+    |-- collision-detector.rb
+    |-- commands.rb
+    |-- entity.rb
+    |-- events.rb
+    |-- game.rb
+    |-- gun.rb
+    |-- location.rb
+    |-- movement.rb
+    |-- observer.rb
+    |-- space-invaders.rb
+	</pre>
+      </div>
+      <div class="right column">
+	<iframe width="420" height="315" src="http://www.youtube.com/embed/DbDNoktaQ8s" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Problems</h2>
+      <h3>Cucumber</h3>
+      <pre>
+	<code>
+wrong argument type Module (expected Class) (TypeError)
+/home/user/space-invaders/src/gun.rb:6:in `&lt;top (required)&gt;' 
+/home/user/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+/home/user/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+/home/user/space-invaders/src/space-invaders.rb:2:in `&lt;top (required)&gt;'
+/home/user/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require' 
+/home/user/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+/home/user/space-invaders/features/step_definitions/space-invaders_steps.rb:1:in `&lt;top (required)&gt;' 
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/rb_support/rb_language.rb:129:in `load'
+/home/user.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/rb_support/rb_language.rb:129:in `load_code_file'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/runtime/support_code.rb:171:in `load_file'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/runtime/support_code.rb:83:in `block in load_files!'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/runtime/support_code.rb:82:in `each'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/runtime/support_code.rb:82:in `load_files!'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/runtime.rb:174:in `load_step_definitions'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/runtime.rb:40:in `run!'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/cli/main.rb:43:in `execute!'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/lib/cucumber/cli/main.rb:20:in `execute'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/gems/cucumber-1.1.4/bin/cucumber:14:in `&lt;top (required)&gt;'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/bin/cucumber:19:in `load'
+/home/user/.rvm/gems/ruby-1.9.2-p290@invaders/bin/cucumber:19:in `&lt;main&gt;'	 
+	</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>Improvements</h2>
+      <div class="left column">
+	<h3>What can be improved?</h3>
+	<ul>
+	  <li class="slide">Bounding Box</li>
+	  <li class="slide">Scoring</li>
+	  <li class="slide">Different Aliens</li>
+	  <li class="slide">Aggressive Aliens</li>
+	  <li class="slide">Start/Pause/Stop</li>
+	  <li class="slide">Easying</li>
+	  <li class="slide">etcetera</li>
+	</ul>
+      </div>
+      <div class="right column"><img src="image/continuous_improvement_icon.gif"/></div>
+    </section>
+
+    <section class="slide">
+      <h2>Explorations</h2>
+      <div class="left column">
+	<h3>What venues would I like to explore?</h3>
+	<ul>
+	  <li class="slide">Gem</li>
+	  <li class="slide">Threads</li>
+	  <li class="slide">RabbitMQ</li>
+	</ul>
+      </div>
+      <div class="right column"><img src="image/rover.jpg"/></div>
+    </section>
+
+    <section class="slide">
+<<<<<<< HEAD
       <h2>Introduction</h2>
       <div class="first column">
 	<ul>
@@ -69,10 +201,13 @@
     </section>
 
     <section class="slide">
+=======
+>>>>>>> origin/gh-pages
       <h1>Questions?</h1>
     </section>
 
     <section class="slide">
+<<<<<<< HEAD
      <p>
        <h2>Contact</h2>
        <ul>
@@ -81,6 +216,16 @@
 	 <li>@daanvberkel1980</li>
        </ul>       
      </p>
+=======
+      <p>
+	<h2>Contact</h2>
+	<ul>
+	  <li>puts ([["daan", "van", "berkel", "1980"],["gmail", "com"]].map {|e| e.join('.')}).join('@')</li>
+	  <li>https://github.com/dvberkel</li>
+	  <li>@daanvberkel1980</li>
+	</ul>       
+      </p>
+>>>>>>> origin/gh-pages
     </section>
   </body>
 </html>
