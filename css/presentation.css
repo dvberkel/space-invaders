@@ -18,3 +18,13 @@
     position: absolute;
     left: 50%;
 }
+
+.drop {
+    position: relative;
+    top: 50px;
+}
+
+.dropx2 {
+    position: relative;
+    top: 100px;
+}
