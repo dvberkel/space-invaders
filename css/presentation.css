@@ -19,16 +19,9 @@
     left: 50%;
 }
 
-.drop {
-    position: relative;
-    top: 50px;
-}
-
-.dropx2 {
-    position: relative;
-    top: 100px;
-}
-
-.prettyprint {
-    font-size: xx-small;
+.overlay {
+    position: absolute;
+    top: 0%;
+    margin-left: auto;
+    margin-right: auto;
 }
