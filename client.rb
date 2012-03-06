@@ -54,6 +54,33 @@ class NullPiece < Piece
   end
 end
 
+class Keys
+  include Rubygame
+
+  def initialize()
+    @keys_down = []
+  end
+  
+  def tick(game)
+    @keys_down.each do |key|
+      case key
+      when K_LEFT
+        game.signal(LeftSignaled.new)
+      when K_RIGHT
+        game.signal(RightSignaled.new)
+      end
+    end
+  end
+  
+  def down(key)
+    @keys_down << key unless @keys_down.include?(key)
+  end
+  
+  def up(key)
+    @keys_down.delete(key)
+  end
+end
+
 class GuiView
   include Rubygame
   
@@ -64,6 +91,7 @@ class GuiView
     @pieces = {}
     @game = Game.new()
     @game.addObserver(self)
+    @keys = Keys.new
   end
 
   def addPiece(id, piece)
@@ -102,6 +130,7 @@ class GuiView
     @game.start()
     loop do
       @game.tick
+      @keys.tick(@game)
       @events.each do |event|
         case event
         when QuitEvent
@@ -117,14 +146,13 @@ class GuiView
         when GunFired
           addBullet(event.bullet)
         when KeyDownEvent
-          case event.key
-          when K_LEFT
-            @game.signal(LeftSignaled.new)
-          when K_RIGHT
-            @game.signal(RightSignaled.new)
-          when K_SPACE
-            @game.signal(FireSignaled.new)
+          if event.key == K_SPACE
+            @game.signal(FireSignaled.new) if event.key == K_SPACE
+          else
+            @keys.down(event.key)
           end
+        when KeyUpEvent
+          @keys.up(event.key)
         end
       end
       draw
